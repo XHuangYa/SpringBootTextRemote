@@ -1,0 +1,42 @@
+1.********************javaBean*********************
+/*
+ *将配置文件中配置的每一个属性的值，映射到这个组件中
+ *@configurationProperties:告诉springboot将本类中的所有属性与配置文件中的属性进行绑定
+ *@prefix="person" :配置文件中的哪个下面的属性进行——映射
+ *@component:将该组件纳入spring容器；只有容器中的组件才能提供@configurationProperties
+ *
+ */
+@component
+@ConfigurationProperties(prefix="person")
+public class Person{
+	String name;
+	int age;
+	boolean boss;
+	Map<String,String> map;
+	List<String> list;
+	Dog dog;
+}
+
+public class Dog{
+	String name;
+	int age;
+}
+2.********************yaml文件*********************
+person:
+  name: 李婷
+  age: 18
+  boss: false
+  map: {key1: value1,key2: value2}  --map
+  list: [cat,dog,panda]             --list
+  dog:                              --对象
+    name: 哈士奇
+    age: 20
+3.********************pom.xml*********************
+导入配置文件处理器，以后编写配置文件会进行提示
+<dependenc>
+	<groupId>org.springframework.boot<groupId>
+	<artifactid>spring-boot-configuration-processor<artifactid>
+</dependenc>
+
+
+
