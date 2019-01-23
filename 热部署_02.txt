@@ -1,0 +1,24 @@
+1.@RestController注解相当于@ResponseBody ＋ @Controller合在一起的作用
+2.
+@SpringBootApplication
+public class  SpringBootApplication{
+	public static void main(String[] args){
+		SpringApplication.run(SpringBootApplication.class,args);
+	}
+}
+3.
+@RestController
+public class Controller {
+	@RequestMapping("/hello")
+	public String print(){
+		return "hello";
+	}
+}
+4.热部署 引入的依赖 
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-devtools</artifactId>
+	<optional>true</optional>
+</dependency>
+
+快捷键：ctrl+shift+F9

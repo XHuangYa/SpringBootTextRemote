@@ -1,0 +1,77 @@
+*******************************常用注解*****************************8
+@SpringBootApplication
+public class  HelloWordSpringBootApplication{
+	public static void main(String[] args){
+		SpringApplication.run(HelloWordSpringBootApplication.class,args);
+	}
+}
+
+@SpringBootApplication
+	-->@SpringBootConfigration-->@Configration
+			//包含@configration的类表示该类是一个配置类；并且会被纳入spring容器中；注解方式容器的标注；配置类也是容器中的组件
+	-->@EnableAutoConfigration-->@AutoConfigrationPackage-->@import(AutoConfigrationPackage.registrar.class)
+			//registrar会自动扫描 找到SpringBootApplicaton主配置类所在的包，将该包及所有子包纳入Spring容器中
+	-->@ComponentScan
+			//组件进行扫描的注解
+	-->EnableAutoConfigration-->@Import(enableAutoConfigrationimportSelector.class)
+			//给容器导入组件，将所有需要导入的组件以全类名的方式进行返回，这些组件就会被添加ioc容器中；会给容器导入非常多的组件，这就是给容器导入这个场景所需要的组件。
+*******************************实例-1*****************************
+@Controller
+public  class  TestController{
+	@Responsebody
+	@RequestMapping('/hello')
+	public String  Test(){
+		return "Hello";
+	}
+}
+******************************实例-2*****************************
+public  interface  Ani{
+	public void print();
+}
+@Component
+public  class Cat implements Ani{
+	@override
+	public void print(){
+		System.out.println("我是猫");
+	}
+}
+@Component
+public  class Dog implements Ani{
+	@override
+	public void print(){
+		System.out.println("我是狗");
+	}
+}
+
+@Configration
+public class configA{
+	@Bean("Cancy")
+	public Cat getCat(){
+		return  new Cat();
+	}
+}
+
+@Configration
+public class configB{
+	@Bean("hashiqi")
+	public Dog getDog(){
+		return  new Dog();
+	}
+}
+
+@Configration
+@Import({configA.class,configB.class})
+public class loderConfig(){
+
+}
+
+public class Test{
+	public static void main(String[] args){
+		AnnotationConfigAppliicationContext ac=new AnnotationConfigAppliicationContext(loderConfig.class)
+		Cat cat=(Cat)ac.getBean("Cancy");
+		cat.print();
+}
+
+
+
+
