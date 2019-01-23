@@ -31,7 +31,17 @@ person:
   dog:                              --对象
     name: 哈士奇
     age: 20
-3.********************pom.xml*********************
+3.********************properties文件*********************
+person.name=哈士奇
+person.age=16
+person.boss=false
+person.map.key1=value1
+person.map.key2=value2
+person.list=cat,dog,panda
+person.dog.name=${person.name}
+person.dog.age=${person.age}
+
+4.********************pom.xml*********************
 导入配置文件处理器，以后编写配置文件会进行提示
 <dependenc>
 	<groupId>org.springframework.boot<groupId>
