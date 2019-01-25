@@ -1,0 +1,5 @@
+1.SpringBoot默认加载application.properties/application.yml配置问价；
+要想加载自己编写的配置问价，需要通过@PropertySource(value={"classpath:myself.properties"})进行引入
+@PropertySource只能导入properties文件，不能引入yml文件
+2.Spring等配置文件，默认会被SpringBoot给配置好，自己编写的spring文件，springboot默认不识别，要想使用自己编写
+的spring配置文件，需要在主配置类（@SpringBootApplication）上添加@ImportSource(locations={classpath:spring.xml})

@@ -1,0 +1,10 @@
+AutoConfigurationImportSelector:自动配置导入的选择器
+getCandidateConfigurations():获取候选的配置
+1.@SpringBootApplication-->@EnableAutoConfiguration-->@Import(AutoConfigurationImportSelector.class)
+-->AutoConfigurationImportSelector-->selectImports(方法)-->getCandidateConfigurations(selectImports()中方法)
+-->loadFactoryNames(getCandidateConfigurations()中的方法)-->loadSpringFactories(loadFactoryNames()中的方法)
+--> Enumeration<URL> urls = classLoader != null ? classLoader.getResources("META-INF/spring.factories") : ClassLoader.getSystemResources("META-INF/spring.factories");
+springboot会自动读取META-INF/spring.factories中的配置类，这些配置类（@Bean）会被纳入ioc容器中。
+
+               
+

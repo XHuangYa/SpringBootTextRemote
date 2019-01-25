@@ -1,0 +1,44 @@
+@component
+@ConfigurationProperties（prefix="person"）
+@Validated     //开启jsr303数据校验的注解
+public class Person{
+	@Value("${person.name}")  //value注入
+	String name;
+	@Email      //jsr303数据校验
+	@Value("$person.email")
+	String email;
+	int age;
+	boolean boss;
+	Map<String,String> map;
+	List<String> list;
+	Dog dog;
+}
+
+public class Dog{
+	String name;
+	int age;
+}
+2.********************yaml文件*********************
+person:
+  name: 李婷
+  age: 18
+  boss: false
+  map: {key1: value1,key2: value2}  --map
+  list: [cat,dog,panda]             --list
+  dog:                              --对象
+    name: 哈士奇
+    age: 20
+  email: 1253671@qq.com
+3.********************区别*********************
+			@ConfigurationProperties		@Value	
+
+注值			批量注入					 单个
+松散语法		  支持						不支持   （lastName<-->last-name）
+springEL		 不支持						 支持								
+jsr303数据校验    支持						不支持
+注入复杂类型	  支持						不支持
+
+
+
+
+

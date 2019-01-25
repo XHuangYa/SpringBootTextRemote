@@ -45,7 +45,7 @@ public  class Dog implements Ani{
 
 @Configration
 public class configA{
-	@Bean("Cancy")
+	@Bean("Cancy")   //将方法中的返回值添加到容器中；容器中这个组件默认的ID就是方法名
 	public Cat getCat(){
 		return  new Cat();
 	}
